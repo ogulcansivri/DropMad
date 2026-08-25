@@ -122,6 +122,7 @@ public struct ShelfView: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
+        .background(WindowDragHandle()) // Drag header to move the window!
     }
     
     // MARK: - Empty State / Drop Target

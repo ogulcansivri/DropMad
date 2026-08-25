@@ -75,7 +75,7 @@ public struct ShelfItemCardView: View {
         }
         // Native Drag-Out capability to any application (Finder, Slack, Browser, Mail, etc.)
         .onDrag {
-            let provider = NSItemProvider(contentsOf: item.url) ?? NSItemProvider()
+            let provider = NSItemProvider(object: item.url as NSURL)
             provider.suggestedName = item.name
             return provider
         }

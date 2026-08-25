@@ -38,7 +38,7 @@ public final class ShelfWindowManager: NSObject, ObservableObject {
         panel.isOpaque = false
         panel.backgroundColor = .clear
         panel.hasShadow = false // Eliminates the rectangular window frame box
-        panel.isMovableByWindowBackground = true
+        panel.isMovableByWindowBackground = false // Prevents window from hijacking file drag-out
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
         
