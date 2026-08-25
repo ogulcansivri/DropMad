@@ -3,7 +3,6 @@ import AppKit
 
 public struct ShelfItemCardView: View {
     public let item: ShelfItem
-    @ObservedObject var viewModel = DropShelfViewModel.shared
     @State private var isHovering = false
     
     public init(item: ShelfItem) {
@@ -49,7 +48,7 @@ public struct ShelfItemCardView: View {
             // Actions on Hover
             if isHovering {
                 Button(action: {
-                    viewModel.removeItem(withID: item.id)
+                    DropShelfViewModel.shared.removeItem(withID: item.id)
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))
@@ -81,18 +80,18 @@ public struct ShelfItemCardView: View {
             return provider
         }
         .onTapGesture(count: 2) {
-            viewModel.openItem(item: item)
+            DropShelfViewModel.shared.openItem(item: item)
         }
         .contextMenu {
             Button("Open") {
-                viewModel.openItem(item: item)
+                DropShelfViewModel.shared.openItem(item: item)
             }
             Button("Reveal in Finder") {
-                viewModel.revealInFinder(item: item)
+                DropShelfViewModel.shared.revealInFinder(item: item)
             }
             Divider()
             Button("Remove from Shelf") {
-                viewModel.removeItem(withID: item.id)
+                DropShelfViewModel.shared.removeItem(withID: item.id)
             }
         }
     }

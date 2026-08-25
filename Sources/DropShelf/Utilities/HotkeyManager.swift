@@ -1,5 +1,4 @@
 import AppKit
-import Carbon
 
 public final class HotkeyManager {
     public static let shared = HotkeyManager()

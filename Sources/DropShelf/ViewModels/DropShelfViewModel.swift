@@ -105,42 +105,45 @@ public final class DropShelfViewModel: ObservableObject {
     public func zipAllItems() {
         guard !items.isEmpty else { return }
         
+        let itemsToZip = items
         let fileManager = FileManager.default
         let tempDir = fileManager.temporaryDirectory
         let timestamp = Int(Date().timeIntervalSince1970)
         let stagingDir = tempDir.appendingPathComponent("DropShelf_Archive_\(timestamp)", isDirectory: true)
         let zipURL = tempDir.appendingPathComponent("DropShelf_Archive_\(timestamp).zip")
         
-        do {
-            // Create temporary staging directory
-            try fileManager.createDirectory(at: stagingDir, withIntermediateDirectories: true)
-            
-            // Copy each item into staging directory
-            for item in items {
-                let dest = stagingDir.appendingPathComponent(item.url.lastPathComponent)
-                try? fileManager.removeItem(at: dest)
-                try fileManager.copyItem(at: item.url, to: dest)
+        Task.detached(priority: .userInitiated) {
+            do {
+                // Create temporary staging directory
+                try fileManager.createDirectory(at: stagingDir, withIntermediateDirectories: true)
+                
+                // Copy each item into staging directory
+                for item in itemsToZip {
+                    let dest = stagingDir.appendingPathComponent(item.url.lastPathComponent)
+                    try? fileManager.removeItem(at: dest)
+                    try fileManager.copyItem(at: item.url, to: dest)
+                }
+                
+                // Run ditto on background thread
+                let process = Process()
+                process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
+                process.arguments = ["-c", "-k", "--sequesterRsrc", "--keepParent", stagingDir.path, zipURL.path]
+                
+                try process.run()
+                process.waitUntilExit()
+                
+                // Clean up staging folder
+                try? fileManager.removeItem(at: stagingDir)
+                
+                // Update shelf items safely on MainActor
+                await MainActor.run {
+                    self.clearAll()
+                    self.addItems(urls: [zipURL])
+                }
+            } catch {
+                print("Failed to create zip archive: \(error)")
+                try? fileManager.removeItem(at: stagingDir)
             }
-            
-            // Run ditto on the staging directory to produce the zip
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
-            process.arguments = ["-c", "-k", "--sequesterRsrc", "--keepParent", stagingDir.path, zipURL.path]
-            
-            try process.run()
-            process.waitUntilExit()
-            
-            // Clean up staging folder
-            try? fileManager.removeItem(at: stagingDir)
-            
-            // Replace shelf items with the created zip file
-            Task { @MainActor in
-                self.clearAll()
-                self.addItems(urls: [zipURL])
-            }
-        } catch {
-            print("Failed to create zip archive: \(error)")
-            try? fileManager.removeItem(at: stagingDir)
         }
     }
 }

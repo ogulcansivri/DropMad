@@ -10,10 +10,8 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
         
         // Setup Floating Window & Hotkeys
-        Task { @MainActor in
-            ShelfWindowManager.shared.setup()
-            HotkeyManager.shared.startMonitoring()
-        }
+        ShelfWindowManager.shared.setup()
+        HotkeyManager.shared.startMonitoring()
         
         // Setup Status Item in Menu Bar
         setupStatusItem()
@@ -57,28 +55,20 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem?.menu = nil // Reset so left click still triggers action
         } else {
             // Left click toggles shelf
-            Task { @MainActor in
-                ShelfWindowManager.shared.toggle(nearMouse: false)
-            }
-        }
-    }
-    
-    @objc private func toggleShelf() {
-        Task { @MainActor in
             ShelfWindowManager.shared.toggle(nearMouse: false)
         }
     }
     
+    @objc private func toggleShelf() {
+        ShelfWindowManager.shared.toggle(nearMouse: false)
+    }
+    
     @objc private func clearShelf() {
-        Task { @MainActor in
-            DropShelfViewModel.shared.clearAll()
-        }
+        DropShelfViewModel.shared.clearAll()
     }
     
     @objc private func copyAll() {
-        Task { @MainActor in
-            DropShelfViewModel.shared.copyAllToClipboard()
-        }
+        DropShelfViewModel.shared.copyAllToClipboard()
     }
     
     @objc private func quitApp() {
