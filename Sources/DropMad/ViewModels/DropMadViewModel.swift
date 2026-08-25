@@ -55,7 +55,7 @@ public final class DropMadViewModel: ObservableObject {
                     guard let tempURL = tempURL, error == nil else { return }
                     
                     // Copy to a persistent temp location so it doesn't get wiped immediately
-                    let cacheDir = FileManager.default.temporaryDirectory.appendingPathComponent("DropShelfCache", isDirectory: true)
+                    let cacheDir = FileManager.default.temporaryDirectory.appendingPathComponent("DropMadCache", isDirectory: true)
                     try? FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true)
                     let destURL = cacheDir.appendingPathComponent(tempURL.lastPathComponent)
                     

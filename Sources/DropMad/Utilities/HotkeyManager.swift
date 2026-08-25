@@ -9,7 +9,7 @@ public final class HotkeyManager {
     private init() {}
     
     public func startMonitoring() {
-        // Monitor global key down (Option + Space to toggle DropShelf)
+        // Monitor global key down (Option + Space to toggle DropMad)
         globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
             self?.handleKeyEvent(event)
         }
