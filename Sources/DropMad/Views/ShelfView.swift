@@ -13,12 +13,12 @@ public struct ShelfView: View {
         ZStack {
             // Frosted Acrylic / Glass Background
             VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
-                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .stroke(isTargeted ? Color.accentColor : Color.white.opacity(0.15), lineWidth: isTargeted ? 2 : 1)
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(isTargeted ? Color.accentColor : Color.white.opacity(0.18), lineWidth: isTargeted ? 2 : 1)
                 )
-                .shadow(color: Color.black.opacity(0.35), radius: 20, x: 0, y: 10)
+                .shadow(color: Color.black.opacity(0.4), radius: 16, x: 0, y: 8)
             
             VStack(spacing: 0) {
                 // Header (Draggable Area)
