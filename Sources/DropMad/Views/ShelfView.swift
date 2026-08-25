@@ -12,7 +12,7 @@ public struct ShelfView: View {
     public var body: some View {
         ZStack {
             // Frosted Acrylic / Glass Background
-            VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
+            VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -20,41 +20,54 @@ public struct ShelfView: View {
                 )
                 .shadow(color: Color.black.opacity(0.4), radius: 16, x: 0, y: 8)
             
-            VStack(spacing: 0) {
-                // Header (Draggable Area)
-                headerView
-                
-                Divider()
-                    .background(Color.white.opacity(0.1))
-                
-                // Content Body
-                if viewModel.items.isEmpty {
-                    emptyStateView
-                } else {
-                    itemsListView
+            if showingGuide {
+                GuideView {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        showingGuide = false
+                    }
                 }
-                
-                // Footer / Action Bar (if items exist)
-                if !viewModel.items.isEmpty {
+                .transition(.asymmetric(insertion: .opacity.combined(with: .scale(scale: 0.96)), removal: .opacity))
+            } else {
+                VStack(spacing: 0) {
+                    // Header (Draggable Area)
+                    headerView
+                    
                     Divider()
                         .background(Color.white.opacity(0.1))
-                    footerView
+                    
+                    // Content Body
+                    if viewModel.items.isEmpty {
+                        emptyStateView
+                    } else {
+                        itemsListView
+                    }
+                    
+                    // Footer / Action Bar (if items exist)
+                    if !viewModel.items.isEmpty {
+                        Divider()
+                            .background(Color.white.opacity(0.1))
+                        footerView
+                    }
                 }
+                .transition(.opacity)
             }
         }
-        .frame(width: 320, height: viewModel.items.isEmpty ? 260 : 420)
+        .frame(width: 320, height: showingGuide ? 420 : (viewModel.items.isEmpty ? 260 : 420))
         .padding(10)
         // Accept drops anywhere on the panel!
         .onDrop(of: [UTType.fileURL.identifier, UTType.item.identifier], isTargeted: $isTargeted) { providers in
-            viewModel.handleDrop(providers: providers)
-        }
-        .sheet(isPresented: $showingGuide) {
-            GuideView()
+            if showingGuide {
+                showingGuide = false
+            }
+            return viewModel.handleDrop(providers: providers)
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ShowDropMadGuide"))) { _ in
-            showingGuide = true
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                showingGuide = true
+            }
         }
         .animation(.spring(response: 0.35, dampingFraction: 0.8), value: viewModel.items.count)
+        .animation(.spring(response: 0.35, dampingFraction: 0.8), value: showingGuide)
         .animation(.easeInOut(duration: 0.2), value: isTargeted)
     }
     
@@ -82,7 +95,9 @@ public struct ShelfView: View {
             
             // Guide / Help Button
             Button(action: {
-                showingGuide = true
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                    showingGuide = true
+                }
             }) {
                 Image(systemName: "questionmark.circle")
                     .font(.system(size: 13, weight: .medium))

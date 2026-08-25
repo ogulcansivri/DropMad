@@ -8,7 +8,7 @@ public struct VisualEffectView: NSViewRepresentable {
     
     public init(
         material: NSVisualEffectView.Material = .hudWindow,
-        blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
+        blendingMode: NSVisualEffectView.BlendingMode = .withinWindow,
         state: NSVisualEffectView.State = .active
     ) {
         self.material = material
