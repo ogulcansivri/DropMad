@@ -96,16 +96,13 @@ public struct GuideView: View {
                 .background(Color.white.opacity(0.1))
             
             // Footer
-            HStack {
-                Text("⌥ + D")
-                    .font(.system(size: 10, weight: .bold, design: .monospaced))
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
-                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.primary.opacity(0.08)))
-                    .foregroundColor(.secondary)
+            HStack(spacing: 6) {
+                Image(systemName: "tray.and.arrow.down.fill")
+                    .font(.system(size: 11))
+                    .foregroundColor(.accentColor)
                 
-                Text(locManager.currentLanguage == .turkish ? "ile çağır" : "to summon")
-                    .font(.system(size: 10))
+                Text(locManager.currentLanguage == .turkish ? "Menü çubuğundan tek tıkla açın" : "Click menu bar icon anytime")
+                    .font(.system(size: 11))
                     .foregroundColor(.secondary)
                 
                 Spacer()

@@ -55,7 +55,7 @@ public struct L10n {
     public static var folder: String { isTurkish ? "Klasör" : "Folder" }
     
     // Menu Bar
-    public static var toggleShelf: String { isTurkish ? "Rafı Aç/Kapat (⌥ + D)" : "Toggle Shelf (⌥ + D)" }
+    public static var toggleShelf: String { isTurkish ? "Rafı Aç/Kapat" : "Toggle Shelf" }
     public static var itemsCount: (Int) -> String = { count in
         isTurkish ? "Raftaki Dosya Sayısı: \(count)" : "Items on Shelf: \(count)"
     }
@@ -89,9 +89,9 @@ public struct L10n {
                   : "Drag files out directly into Slack, Mail, Discord, Finder folders, or browser upload fields."
     }
     
-    public static var step4Title: String { isTurkish ? "⚡ Kısayol & Süper Güçler" : "⚡ Shortcuts & Superpowers" }
+    public static var step4Title: String { isTurkish ? "⚡ Menü Çubuğu & Süper Güçler" : "⚡ Menu Bar & Superpowers" }
     public static var step4Desc: String {
-        isTurkish ? "• ⌥ + D: Rafı anında imlecin altına çağırır.\n• Hepsini Zip Yap: Dosyaları tek tıkla arşivler.\n• Hepsini Kopyala: Dosya yollarını panoya alır."
-                  : "• ⌥ + D: Summon the shelf instantly under cursor.\n• Zip All: Compress all buffered files into a .zip file.\n• Copy All: Copy all file paths to your clipboard."
+        isTurkish ? "• Menü Çubuğu: Sağ üstteki simgeye tek tıkla rafı açıp kapatın.\n• Hepsini Zip Yap: Dosyaları tek tıkla arşivler.\n• Hepsini Kopyala: Dosya yollarını panoya alır."
+                  : "• Menu Bar: Single click the top menu bar icon to toggle the shelf.\n• Zip All: Compress all buffered files into a .zip file.\n• Copy All: Copy all file paths to your clipboard."
     }
 }
