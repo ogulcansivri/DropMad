@@ -25,7 +25,7 @@ graph LR
 
 ### 1. 🚀 Quick Start in 30 Seconds
 
-1. **Summon the Shelf:** Press `⌥ + Space` (Option + Space) anywhere on your Mac. DropMad will appear right next to your mouse cursor.
+1. **Summon the Shelf:** Press `⌥ + D` (Option + D) anywhere on your Mac. DropMad will appear right next to your mouse cursor.
 2. **Drop Files In:** Drag any file, folder, image, or link onto the shelf.
 3. **Move to Your Target App:** Switch to another desktop Space, full-screen browser, or app. DropMad stays floating on top!
 4. **Drag Files Out:** Click and drag the file card out of DropMad directly into your target app (Slack, Mail, Discord, Finder, web upload area).
@@ -36,7 +36,7 @@ graph LR
 
 | Action | Shortcut / Trigger | Description |
 |---|---|---|
-| **Summon / Toggle Shelf** | `⌥ + Space` (Option + Space) | Opens/closes DropMad near your cursor. |
+| **Summon / Toggle Shelf** | `⌥ + D` (Option + D) | Opens/closes DropMad near your cursor. |
 | **Open File** | Double-Click on Card | Opens the file in its default macOS app. |
 | **Reveal in Finder** | Right-Click Card → *Reveal in Finder* | Highlights the file in its actual folder. |
 | **Drag Out to Target** | Click & Drag Card | Drops the file into any other application. |
@@ -95,7 +95,7 @@ graph LR
 
 ### 1. 🚀 30 Saniyede Hızlı Başlangıç
 
-1. **Rafı Çağırın:** Klavyenizden `⌥ + Space` (Option + Space) tuşlarına basın. DropMad anında farenizin yanında belirecektir.
+1. **Rafı Çağırın:** Klavyenizden `⌥ + D` (Option + D) tuşlarına basın. DropMad anında farenizin yanında belirecektir.
 2. **Dosyaları Bırakın:** Finder'dan, masaüstünden veya tarayıcıdan herhangi bir dosyayı, klasörü veya resmi rafın üzerine sürükleyin.
 3. **Hedef Uygulamaya Geçin:** Diğer masaüstü alanına (Space) veya tam ekran çalışan bir uygulamaya geçin. DropMad kaybolmaz, ekranda yüzer!
 4. **Hedefe Sürükleyin:** Raftaki dosyayı tutup doğrudan Slack, Mail, WhatsApp, Finder veya web sitesi yükleme alanına bırakın.
@@ -106,7 +106,7 @@ graph LR
 
 | Eylem | Kısayol / Tetikleyici | Açıklama |
 |---|---|---|
-| **Rafı Çağır / Gizle** | `⌥ + Space` (Option + Space) | Rafı imlecin bulunduğu yerde açar veya kapatır. |
+| **Rafı Çağır / Gizle** | `⌥ + D` (Option + D) | Rafı imlecin bulunduğu yerde açar veya kapatır. |
 | **Dosyayı Aç** | Karta Çift Tıklama | Dosyayı varsayılan macOS uygulamasında açar. |
 | **Finder'da Göster** | Karta Sağ Tıkla → *Finder'da Göster* | Dosyanın bulunduğu asıl klasörü açıp dosyayı seçer. |
 | **Hedefe Bırak (Drag-Out)** | Kartı Tut ve Sürükle | Dosyayı hedef uygulamaya taşır. |

@@ -55,7 +55,7 @@ public struct L10n {
     public static var folder: String { isTurkish ? "Klasör" : "Folder" }
     
     // Menu Bar
-    public static var toggleShelf: String { isTurkish ? "Rafı Aç/Kapat (⌥ + Space)" : "Toggle Shelf (⌥ + Space)" }
+    public static var toggleShelf: String { isTurkish ? "Rafı Aç/Kapat (⌥ + D)" : "Toggle Shelf (⌥ + D)" }
     public static var itemsCount: (Int) -> String = { count in
         isTurkish ? "Raftaki Dosya Sayısı: \(count)" : "Items on Shelf: \(count)"
     }
@@ -91,7 +91,7 @@ public struct L10n {
     
     public static var step4Title: String { isTurkish ? "⚡ Kısayol & Süper Güçler" : "⚡ Shortcuts & Superpowers" }
     public static var step4Desc: String {
-        isTurkish ? "• ⌥ + Space: Rafı anında imlecin altına çağırır.\n• Hepsini Zip Yap: Dosyaları tek tıkla arşivler.\n• Hepsini Kopyala: Dosya yollarını panoya alır."
-                  : "• ⌥ + Space: Summon the shelf instantly under cursor.\n• Zip All: Compress all buffered files into a .zip file.\n• Copy All: Copy all file paths to your clipboard."
+        isTurkish ? "• ⌥ + D: Rafı anında imlecin altına çağırır.\n• Hepsini Zip Yap: Dosyaları tek tıkla arşivler.\n• Hepsini Kopyala: Dosya yollarını panoya alır."
+                  : "• ⌥ + D: Summon the shelf instantly under cursor.\n• Zip All: Compress all buffered files into a .zip file.\n• Copy All: Copy all file paths to your clipboard."
     }
 }

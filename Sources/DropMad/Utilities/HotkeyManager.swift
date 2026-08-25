@@ -24,9 +24,9 @@ public final class HotkeyManager {
     
     @discardableResult
     private func handleKeyEvent(_ event: NSEvent) -> Bool {
-        // Check for Option + Space (Keycode 49 = Space, flags contain .option)
+        // Check for Option + D (Keycode 2 = D, flags contain .option)
         let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-        if flags == .option && event.keyCode == 49 {
+        if flags == .option && event.keyCode == 2 {
             Task { @MainActor in
                 ShelfWindowManager.shared.toggle(nearMouse: true)
             }

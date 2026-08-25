@@ -97,7 +97,7 @@ public struct GuideView: View {
             
             // Footer
             HStack {
-                Text("⌥ + Space")
+                Text("⌥ + D")
                     .font(.system(size: 10, weight: .bold, design: .monospaced))
                     .padding(.horizontal, 6)
                     .padding(.vertical, 3)

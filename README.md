@@ -31,7 +31,7 @@ Moving files between **different full-screen apps, browser tabs, or macOS Spaces
 - 🛸 **Floats Across All Spaces:** Visible over full-screen apps and across all virtual desktops (`.canJoinAllSpaces`).
 - 📥 **Drag-In Anything:** Accepts files, folders, images, documents, and URLs from Finder, browsers, or other apps.
 - 📤 **Seamless Drag-Out:** Drag items directly out of the shelf into Slack, Discord, Finder, Mail, or web uploads.
-- ⚡ **Instant Global Summon:** Press `⌥ + Space` (Option + Space) to summon the shelf right under your mouse pointer.
+- ⚡ **Instant Global Summon:** Press `⌥ + D` (Option + D) to summon the shelf right under your mouse pointer.
 - 🖼️ **Quick Previews:** High-resolution asynchronous file thumbnails via macOS `QuickLookThumbnailing`.
 - 🗜️ **One-Click "Zip All":** Compress everything currently held in the shelf into a single `.zip` file on a background queue.
 - 📋 **Copy All:** Quick button to copy all file paths/objects to the clipboard.
@@ -41,7 +41,7 @@ Moving files between **different full-screen apps, browser tabs, or macOS Spaces
 ### ⌨️ Shortcuts & Interactions
 | Action | Shortcut / Gesture |
 |---|---|
-| **Toggle Shelf (Under Cursor)** | `⌥ + Space` (Option + Space) |
+| **Toggle Shelf (Under Cursor)** | `⌥ + D` (Option + D) |
 | **Open Built-in Guide** | Click `?` in header or Menu Bar → User Guide |
 | **Open File** | Double click on item card |
 | **Reveal in Finder** | Right click item card → *Reveal in Finder* |
@@ -82,7 +82,7 @@ Tam ekran uygulamalar (Xcode, Safari vb.) veya sanal masaüstleri (Spaces) aras�
 - 🛸 **Tüm Masaüstlerinde (Spaces) Yüzer:** Tam ekran uygulamaların ve sanal masaüstlerinin üzerinde her zaman görünür kalır.
 - 📥 **Her Şeyi Kabul Eder:** Finder'dan dosyalar, klasörler, fotoğraflar veya tarayıcıdan indirilen görselleri sürükleyip bırakabilirsiniz.
 - 📤 **Doğrudan Dışarı Sürükleme (Drag-Out):** Raftaki herhangi bir dosyayı tutup doğrudan Slack, Discord, Mail, Finder veya tarayıcı yükleme alanlarına bırakabilirsiniz.
-- ⚡ **Hızlı Çağırma:** `⌥ + Space` (Option + Space) kısayolu ile rafı doğrudan farenin bulunduğu noktada açabilirsiniz.
+- ⚡ **Hızlı Çağırma:** `⌥ + D` (Option + D) kısayolu ile rafı doğrudan farenin bulunduğu noktada açabilirsiniz.
 - 🖼️ **Zengin Önizleme:** macOS `QuickLookThumbnailing` sayesinde PDF, resim ve kod dosyalarının yüksek çözünürlüklü minik önizlemeleri oluşturulur.
 - 🗜️ **Tek Tıkla "Hepsini Zip Yap":** Raftaki tüm dosyaları arka planda tek bir `.zip` arşivine dönüştürür.
 - 📋 **Hepsini Kopyala:** Raftaki dosyaların yollarını tek tıkla panoya kopyalar.
