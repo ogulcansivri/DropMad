@@ -12,6 +12,10 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
 </p>
 
+<p align="center">
+  <img src="assets/demo.gif" alt="DropMad in Action Demo" width="700" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+</p>
+
 ---
 
 ## 🌐 Language / Dil Seçimi
