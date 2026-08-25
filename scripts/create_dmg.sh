@@ -7,26 +7,66 @@ echo "🔨 Building DropMad..."
 APP_NAME="DropMad"
 VERSION="1.0.0"
 BUILD_DIR="./build"
-DMG_NAME="${APP_NAME}-${VERSION}.dmg"
-DMG_PATH="${BUILD_DIR}/${DMG_NAME}"
+DMG_FINAL="${BUILD_DIR}/${APP_NAME}-${VERSION}.dmg"
+DMG_TEMP="${BUILD_DIR}/temp.dmg"
 STAGING_DIR="${BUILD_DIR}/dmg_staging"
+VOL_NAME="${APP_NAME}"
 
-echo "📦 Preparing DMG staging directory..."
-rm -rf "$STAGING_DIR" "$DMG_PATH"
+echo "📦 Preparing DMG staging..."
+rm -rf "$STAGING_DIR" "$DMG_FINAL" "$DMG_TEMP"
 mkdir -p "$STAGING_DIR"
 
-# Copy App to staging
+# Copy App and Applications link
 cp -R "${BUILD_DIR}/${APP_NAME}.app" "$STAGING_DIR/"
-
-# Create symlink to /Applications
 ln -s /Applications "$STAGING_DIR/Applications"
 
-echo "💿 Creating DMG image..."
-hdiutil create -volname "${APP_NAME}" -srcfolder "$STAGING_DIR" -ov -format UDZO "$DMG_PATH"
+# Add background image
+if [ -f "Resources/dmg_background.png" ]; then
+    mkdir -p "$STAGING_DIR/.background"
+    cp "Resources/dmg_background.png" "$STAGING_DIR/.background/background.png"
+fi
 
-# Cleanup staging
-rm -rf "$STAGING_DIR"
+echo "💿 Creating temporary writable DMG..."
+hdiutil create -srcfolder "$STAGING_DIR" -volname "$VOL_NAME" -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW -size 100M "$DMG_TEMP"
+
+echo "🎨 Styling DMG window layout..."
+DEVICE=$(hdiutil attach -readwrite -noverify "$DMG_TEMP" | egrep '^/dev/' | sed 1q | awk '{print $1}')
+MOUNT_POINT="/Volumes/$VOL_NAME"
+
+sleep 2
+
+# AppleScript to position icons and set background
+osascript <<EOF || true
+tell application "Finder"
+    tell disk "$VOL_NAME"
+        open
+        set current view of container window to icon view
+        set toolbar visible of container window to false
+        set statusbar visible of container window to false
+        set the bounds of container window to {200, 150, 860, 590}
+        set theViewOptions to the icon view options of container window
+        set icon size of theViewOptions to 96
+        set arrangement of theViewOptions to not arranged
+        if exists file ".background:background.png" of disk "$VOL_NAME" then
+            set background picture of theViewOptions to file ".background:background.png" of disk "$VOL_NAME"
+        end if
+        set position of item "$APP_NAME.app" of container window to {160, 240}
+        set position of item "Applications" of container window to {500, 240}
+        close
+        open
+        update without registering applications
+        delay 2
+    end tell
+end tell
+EOF
+
+# Sync & unmount
+sync
+hdiutil detach "$DEVICE" || hdiutil detach "$MOUNT_POINT" -force
+
+echo "🗜️ Compressing final DMG..."
+hdiutil convert "$DMG_TEMP" -format UDZO -imagekey zlib-level=9 -o "$DMG_FINAL"
+rm -rf "$DMG_TEMP" "$STAGING_DIR"
 
 echo ""
-echo "🎉 DMG successfully created at: ${DMG_PATH}"
-echo "👉 Users can double-click this DMG and drag DropMad directly into Applications!"
+echo "🎉 Gorgeous Droplet-styled DMG created at: ${DMG_FINAL}"
