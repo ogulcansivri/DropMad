@@ -3,7 +3,9 @@ import UniformTypeIdentifiers
 
 public struct ShelfView: View {
     @StateObject private var viewModel = DropShelfViewModel.shared
+    @ObservedObject private var locManager = LocalizationManager.shared
     @State private var isTargeted: Bool = false
+    @State private var showingGuide: Bool = false
     
     public init() {}
     
@@ -43,8 +45,14 @@ public struct ShelfView: View {
         .frame(width: 320, height: viewModel.items.isEmpty ? 260 : 420)
         .padding(10)
         // Accept drops anywhere on the panel!
-        .onDrop(of: [UTType.fileURL.identifier], isTargeted: $isTargeted) { providers in
+        .onDrop(of: [UTType.fileURL.identifier, UTType.item.identifier], isTargeted: $isTargeted) { providers in
             viewModel.handleDrop(providers: providers)
+        }
+        .sheet(isPresented: $showingGuide) {
+            GuideView()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ShowDropShelfGuide"))) { _ in
+            showingGuide = true
         }
         .animation(.spring(response: 0.35, dampingFraction: 0.8), value: viewModel.items.count)
         .animation(.easeInOut(duration: 0.2), value: isTargeted)
@@ -52,12 +60,12 @@ public struct ShelfView: View {
     
     // MARK: - Header
     private var headerView: some View {
-        HStack {
+        HStack(spacing: 8) {
             Image(systemName: "tray.and.arrow.down.fill")
                 .foregroundColor(.accentColor)
                 .font(.system(size: 14, weight: .semibold))
             
-            Text("DropShelf")
+            Text(L10n.appName)
                 .font(.system(size: 13, weight: .bold))
                 .foregroundColor(.primary)
             
@@ -72,13 +80,27 @@ public struct ShelfView: View {
             
             Spacer()
             
+            // Guide / Help Button
+            Button(action: {
+                showingGuide = true
+            }) {
+                Image(systemName: "questionmark.circle")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(.secondary)
+                    .frame(width: 22, height: 22)
+                    .background(Circle().fill(Color.primary.opacity(0.06)))
+            }
+            .buttonStyle(.plain)
+            .help(L10n.guide)
+            
+            // Close Button
             Button(action: {
                 ShelfWindowManager.shared.hide()
             }) {
                 Image(systemName: "xmark")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(.secondary)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22, height: 22)
                     .background(Circle().fill(Color.primary.opacity(0.06)))
             }
             .buttonStyle(.plain)
@@ -102,11 +124,11 @@ public struct ShelfView: View {
             }
             
             VStack(spacing: 4) {
-                Text(isTargeted ? "Drop to Hold Here" : "Drag & Drop Files Here")
+                Text(isTargeted ? L10n.dropTargetPrompt : L10n.emptyTitle)
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(.primary)
                 
-                Text("Hold files temporarily while switching spaces or full-screen apps")
+                Text(L10n.emptySubtitle)
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -137,7 +159,7 @@ public struct ShelfView: View {
             Button(action: {
                 viewModel.zipAllItems()
             }) {
-                Label("Zip All", systemImage: "doc.zipper")
+                Label(L10n.zipAll, systemImage: "doc.zipper")
                     .font(.system(size: 11, weight: .medium))
             }
             .buttonStyle(.bordered)
@@ -147,7 +169,7 @@ public struct ShelfView: View {
             Button(action: {
                 viewModel.copyAllToClipboard()
             }) {
-                Label("Copy All", systemImage: "doc.on.doc")
+                Label(L10n.copyAll, systemImage: "doc.on.doc")
                     .font(.system(size: 11, weight: .medium))
             }
             .buttonStyle(.bordered)
@@ -164,7 +186,7 @@ public struct ShelfView: View {
                     .foregroundColor(.red.opacity(0.8))
             }
             .buttonStyle(.plain)
-            .help("Clear all items")
+            .help(L10n.clearAll)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)

@@ -39,9 +39,10 @@ public struct ShelfItem: Identifiable, Hashable {
         return formatter
     }()
     
+    @MainActor
     public var formattedSize: String {
         if isDirectory {
-            return "Folder"
+            return L10n.folder
         }
         return Self.byteFormatter.string(fromByteCount: fileSize)
     }

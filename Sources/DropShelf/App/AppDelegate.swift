@@ -35,20 +35,38 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
             // Show Context Menu on Right Click
             let menu = NSMenu()
             
-            menu.addItem(NSMenuItem(title: "Toggle Shelf (⌥ + Space)", action: #selector(toggleShelf), keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: L10n.toggleShelf, action: #selector(toggleShelf), keyEquivalent: ""))
             
             let count = DropShelfViewModel.shared.items.count
-            menu.addItem(NSMenuItem(title: "Items on Shelf: \(count)", action: nil, keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: L10n.itemsCount(count), action: nil, keyEquivalent: ""))
             
             menu.addItem(NSMenuItem.separator())
             
             if count > 0 {
-                menu.addItem(NSMenuItem(title: "Copy All to Clipboard", action: #selector(copyAll), keyEquivalent: ""))
-                menu.addItem(NSMenuItem(title: "Clear Shelf", action: #selector(clearShelf), keyEquivalent: ""))
+                menu.addItem(NSMenuItem(title: L10n.copyAll, action: #selector(copyAll), keyEquivalent: ""))
+                menu.addItem(NSMenuItem(title: L10n.clearAll, action: #selector(clearShelf), keyEquivalent: ""))
                 menu.addItem(NSMenuItem.separator())
             }
             
-            menu.addItem(NSMenuItem(title: "Quit DropShelf", action: #selector(quitApp), keyEquivalent: "q"))
+            // Guide / Help
+            menu.addItem(NSMenuItem(title: L10n.guideTitle, action: #selector(openGuide), keyEquivalent: ""))
+            
+            // Language Submenu
+            let langMenu = NSMenu()
+            for lang in AppLanguage.allCases {
+                let item = NSMenuItem(title: lang.displayName, action: #selector(changeLanguage(_:)), keyEquivalent: "")
+                item.representedObject = lang
+                if lang == LocalizationManager.shared.currentLanguage {
+                    item.state = .on
+                }
+                langMenu.addItem(item)
+            }
+            let langSubItem = NSMenuItem(title: L10n.language, action: nil, keyEquivalent: "")
+            langSubItem.submenu = langMenu
+            menu.addItem(langSubItem)
+            
+            menu.addItem(NSMenuItem.separator())
+            menu.addItem(NSMenuItem(title: L10n.quit, action: #selector(quitApp), keyEquivalent: "q"))
             
             statusItem?.menu = menu
             statusItem?.button?.performClick(nil)
@@ -56,6 +74,16 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             // Left click toggles shelf
             ShelfWindowManager.shared.toggle(nearMouse: false)
+        }
+    }
+    
+    @objc private func openGuide() {
+        ShelfWindowManager.shared.showGuide()
+    }
+    
+    @objc private func changeLanguage(_ sender: NSMenuItem) {
+        if let lang = sender.representedObject as? AppLanguage {
+            LocalizationManager.shared.setLanguage(lang)
         }
     }
     

@@ -83,14 +83,14 @@ public struct ShelfItemCardView: View {
             DropShelfViewModel.shared.openItem(item: item)
         }
         .contextMenu {
-            Button("Open") {
+            Button(L10n.open) {
                 DropShelfViewModel.shared.openItem(item: item)
             }
-            Button("Reveal in Finder") {
+            Button(L10n.revealInFinder) {
                 DropShelfViewModel.shared.revealInFinder(item: item)
             }
             Divider()
-            Button("Remove from Shelf") {
+            Button(L10n.remove) {
                 DropShelfViewModel.shared.removeItem(withID: item.id)
             }
         }
