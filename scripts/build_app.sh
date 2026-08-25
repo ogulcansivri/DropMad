@@ -20,5 +20,10 @@ echo "🚚 Copying binary and Info.plist..."
 cp ".build/release/$APP_NAME" "$MACOS_DIR/$APP_NAME"
 cp "Info.plist" "$CONTENTS_DIR/Info.plist"
 
+if [ -f "Resources/AppIcon.icns" ]; then
+    echo "🎨 Adding AppIcon.icns..."
+    cp "Resources/AppIcon.icns" "$RESOURCES_DIR/AppIcon.icns"
+fi
+
 echo "✨ DropMad.app successfully built at: $APP_BUNDLE"
 echo "👉 You can now run: open \"$APP_BUNDLE\" or move it to /Applications"
