@@ -48,13 +48,24 @@ Moving files between **different full-screen apps, browser tabs, or macOS Spaces
 | **Drag Out** | Click & drag any card out to target app |
 | **Menu Bar Actions** | Left-click tray icon to toggle, Right-click for menu & language switcher |
 
-### 🚀 Installation & Building
+### 🚀 Installation & Setup
+
+#### Option 1: One-Line Terminal Install (Recommended)
+Paste this in your Terminal to download, install to `/Applications`, and launch DropMad instantly:
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/DropMad.git
+curl -fsSL https://raw.githubusercontent.com/ogulcansivri/DropMad/main/install.sh | bash
+```
+
+#### Option 2: Download DMG / ZIP
+Download the latest **`DropMad-1.0.0.dmg`** or `.zip` from the [Releases](https://github.com/ogulcansivri/DropMad/releases) page and drag `DropMad.app` to your `/Applications` folder.
+
+#### Option 3: Build From Source
+```bash
+git clone https://github.com/ogulcansivri/DropMad.git
 cd DropMad
-./scripts/build_app.sh
-cp -R ./build/DropMad.app /Applications/
-open /Applications/DropMad.app
+./scripts/create_dmg.sh
+open build/DropMad-1.0.0.dmg
 ```
 
 ---
@@ -78,15 +89,25 @@ Tam ekran uygulamalar (Xcode, Safari vb.) veya sanal masaüstleri (Spaces) aras�
 - 📖 **Uygulama İçi Resimli Kılavuz:** Uygulamanın içinde tek tıkla açılabilen Türkçe ve İngilizce kullanım rehberi bulunur.
 - 🪶 **Sıfır Yük & Saf Swift:** Dock'u kirletmeden sağ üst menü çubuğunda sessizce çalışır.
 
-### ⌨️ Kısayollar ve Kullanım
-| Eylem | Kısayol / Hareket |
-|---|---|
-| **Rafı Çağır (İmleç Altında)** | `⌥ + Space` (Option + Space) |
-| **Kullanım Kılavuzunu Aç** | Başlıktaki `?` ikonuna tıkla veya Menü Çubuğu → Rehber |
-| **Dosyayı Aç** | Dosya kartına çift tıkla |
-| **Finder'da Göster** | Dosya kartına sağ tıkla → *Finder'da Göster* |
-| **Hedefe Bırak (Drag-Out)** | Kartı tutup hedef uygulamaya sürükle |
-| **Menü Çubuğu** | Sol tık ile rafı aç/kapat, Sağ tık ile menü ve dil seçimi |
+### 🚀 Kurulum Seçenekleri
+
+#### Seçenek 1: Tek Satır Terminal Komutu ile Kurulum (Önerilen)
+Terminal'e şu komutu yapıştırarak DropMad'i anında indirip `/Applications` klasörüne kurabilir ve başlatabilirsiniz:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ogulcansivri/DropMad/main/install.sh | bash
+```
+
+#### Seçenek 2: DMG veya ZIP ile İndirme
+[Releases](https://github.com/ogulcansivri/DropMad/releases) sayfasından en son **`DropMad-1.0.0.dmg`** veya `.zip` dosyasını indirin ve `DropMad.app`'i `/Applications` klasörüne sürükleyin.
+
+#### Seçenek 3: Kaynak Koddan Derleme
+```bash
+git clone https://github.com/ogulcansivri/DropMad.git
+cd DropMad
+./scripts/create_dmg.sh
+open build/DropMad-1.0.0.dmg
+```
 
 ---
 
