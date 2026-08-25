@@ -1,4 +1,4 @@
-# 🗂️ DropShelf
+# 🗂️ DropMad
 
 > **A lightweight, open-source macOS temporary file shelf (Dropover / Yoink alternative) built natively with Swift & SwiftUI.**
 > 
@@ -25,7 +25,7 @@
 ### 💡 The Problem
 Moving files between **different full-screen apps, browser tabs, or macOS Spaces** is awkward. You start dragging a file in Finder, need to swipe three desktops over, switch apps with Mission Control, and hope your finger doesn't slip off the trackpad.
 
-**DropShelf** solves this with a floating, multi-space temporary shelf that appears when you need it and holds your files until you're ready to drop them elsewhere.
+**DropMad** solves this with a floating, multi-space temporary shelf that appears when you need it and holds your files until you're ready to drop them elsewhere.
 
 ### ✨ Features
 - 🛸 **Floats Across All Spaces:** Visible over full-screen apps and across all virtual desktops (`.canJoinAllSpaces`).
@@ -50,11 +50,11 @@ Moving files between **different full-screen apps, browser tabs, or macOS Spaces
 
 ### 🚀 Installation & Building
 ```bash
-git clone https://github.com/YOUR_USERNAME/DropShelf.git
-cd DropShelf
+git clone https://github.com/YOUR_USERNAME/DropMad.git
+cd DropMad
 ./scripts/build_app.sh
-cp -R ./build/DropShelf.app /Applications/
-open /Applications/DropShelf.app
+cp -R ./build/DropMad.app /Applications/
+open /Applications/DropMad.app
 ```
 
 ---
@@ -65,7 +65,7 @@ open /Applications/DropShelf.app
 ### 💡 Problem Neydi?
 Tam ekran uygulamalar (Xcode, Safari vb.) veya sanal masaüstleri (Spaces) arasında dosya sürükleyip bırakmak macOS'ta oldukça zordur. Finder'da bir dosyayı tutup üç masaüstü yana kaydırmak zorunda kalır veya Mission Control arasında parmağınızı trackpad'den kaçırmamaya çalışırsınız.
 
-**DropShelf**, bu sorunu masaüstünün üzerinde yüzen ve dosyalarınızı siz hedef uygulamaya geçene kadar güvenle tutan geçici bir raf ile çözer.
+**DropMad**, bu sorunu masaüstünün üzerinde yüzen ve dosyalarınızı siz hedef uygulamaya geçene kadar güvenle tutan geçici bir raf ile çözer.
 
 ### ✨ Öne Çıkan Özellikler
 - 🛸 **Tüm Masaüstlerinde (Spaces) Yüzer:** Tam ekran uygulamaların ve sanal masaüstlerinin üzerinde her zaman görünür kalır.

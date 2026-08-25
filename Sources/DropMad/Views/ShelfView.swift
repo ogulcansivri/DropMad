@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct ShelfView: View {
-    @StateObject private var viewModel = DropShelfViewModel.shared
+    @StateObject private var viewModel = DropMadViewModel.shared
     @ObservedObject private var locManager = LocalizationManager.shared
     @State private var isTargeted: Bool = false
     @State private var showingGuide: Bool = false
@@ -51,7 +51,7 @@ public struct ShelfView: View {
         .sheet(isPresented: $showingGuide) {
             GuideView()
         }
-        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ShowDropShelfGuide"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ShowDropMadGuide"))) { _ in
             showingGuide = true
         }
         .animation(.spring(response: 0.35, dampingFraction: 0.8), value: viewModel.items.count)

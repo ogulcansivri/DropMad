@@ -38,7 +38,7 @@ public struct L10n {
     }
     
     // Header & Actions
-    public static var appName: String { "DropShelf" }
+    public static var appName: String { "DropMad" }
     public static var guide: String { isTurkish ? "Kılavuz" : "Guide" }
     public static var emptyTitle: String { isTurkish ? "Dosyaları Buraya Sürükleyin" : "Drag & Drop Files Here" }
     public static var emptySubtitle: String {
@@ -60,10 +60,10 @@ public struct L10n {
         isTurkish ? "Raftaki Dosya Sayısı: \(count)" : "Items on Shelf: \(count)"
     }
     public static var language: String { isTurkish ? "Dil / Language" : "Language / Dil" }
-    public static var quit: String { isTurkish ? "DropShelf'ten Çık" : "Quit DropShelf" }
+    public static var quit: String { isTurkish ? "DropMad'den Çık" : "Quit DropMad" }
     
     // Guide Content
-    public static var guideTitle: String { isTurkish ? "DropShelf Kullanım Rehberi" : "DropShelf User Guide" }
+    public static var guideTitle: String { isTurkish ? "DropMad Kullanım Rehberi" : "DropMad User Guide" }
     public static var guideSubtitle: String {
         isTurkish ? "Mac'inizde dosya taşımayı çocuk oyuncağı haline getirin."
                   : "Effortless drag-and-drop file shelf for macOS."
@@ -74,13 +74,13 @@ public struct L10n {
     public static var step1Title: String { isTurkish ? "1. Dosyaları Rafa Bırakın" : "1. Drop Files to Shelf" }
     public static var step1Desc: String {
         isTurkish ? "Finder'dan, tarayıcıdan veya herhangi bir uygulamadan dosyaları, resimleri veya linkleri rafa sürükleyin."
-                  : "Drag files, images, links, or folders from Finder, web browsers, or any app onto DropShelf."
+                  : "Drag files, images, links, or folders from Finder, web browsers, or any app onto DropMad."
     }
     
     public static var step2Title: String { isTurkish ? "2. İstediğiniz Uygulamaya Geçin" : "2. Switch Spaces or Apps" }
     public static var step2Desc: String {
-        isTurkish ? "DropShelf tüm masaüstü alanlarında (Spaces) ve tam ekran uygulamalarda yüzer; eliniz yorulmadan hedef ekrana geçin."
-                  : "DropShelf stays visible across all virtual desktops and full-screen apps without losing your files."
+        isTurkish ? "DropMad tüm masaüstü alanlarında (Spaces) ve tam ekran uygulamalarda yüzer; eliniz yorulmadan hedef ekrana geçin."
+                  : "DropMad stays visible across all virtual desktops and full-screen apps without losing your files."
     }
     
     public static var step3Title: String { isTurkish ? "3. Hedefe Sürükleyip Bırakın" : "3. Drag Out to Target" }

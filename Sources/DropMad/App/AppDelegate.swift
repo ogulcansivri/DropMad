@@ -22,7 +22,7 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
         
         guard let button = statusItem?.button else { return }
         
-        button.image = NSImage(systemSymbolName: "tray.and.arrow.down", accessibilityDescription: "DropShelf")
+        button.image = NSImage(systemSymbolName: "tray.and.arrow.down", accessibilityDescription: "DropMad")
         button.action = #selector(statusItemClicked)
         button.target = self
         button.sendAction(on: [.leftMouseUp, .rightMouseUp])
@@ -37,7 +37,7 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
             
             menu.addItem(NSMenuItem(title: L10n.toggleShelf, action: #selector(toggleShelf), keyEquivalent: ""))
             
-            let count = DropShelfViewModel.shared.items.count
+            let count = DropMadViewModel.shared.items.count
             menu.addItem(NSMenuItem(title: L10n.itemsCount(count), action: nil, keyEquivalent: ""))
             
             menu.addItem(NSMenuItem.separator())
@@ -92,11 +92,11 @@ public final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func clearShelf() {
-        DropShelfViewModel.shared.clearAll()
+        DropMadViewModel.shared.clearAll()
     }
     
     @objc private func copyAll() {
-        DropShelfViewModel.shared.copyAllToClipboard()
+        DropMadViewModel.shared.copyAllToClipboard()
     }
     
     @objc private func quitApp() {

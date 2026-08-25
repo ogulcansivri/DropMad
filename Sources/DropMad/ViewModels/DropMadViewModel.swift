@@ -3,8 +3,8 @@ import AppKit
 import UniformTypeIdentifiers
 
 @MainActor
-public final class DropShelfViewModel: ObservableObject {
-    public static let shared = DropShelfViewModel()
+public final class DropMadViewModel: ObservableObject {
+    public static let shared = DropMadViewModel()
     
     @Published public var items: [ShelfItem] = []
     @Published public var isTargeted: Bool = false
@@ -109,8 +109,8 @@ public final class DropShelfViewModel: ObservableObject {
         let fileManager = FileManager.default
         let tempDir = fileManager.temporaryDirectory
         let timestamp = Int(Date().timeIntervalSince1970)
-        let stagingDir = tempDir.appendingPathComponent("DropShelf_Archive_\(timestamp)", isDirectory: true)
-        let zipURL = tempDir.appendingPathComponent("DropShelf_Archive_\(timestamp).zip")
+        let stagingDir = tempDir.appendingPathComponent("DropMad_Archive_\(timestamp)", isDirectory: true)
+        let zipURL = tempDir.appendingPathComponent("DropMad_Archive_\(timestamp).zip")
         
         Task.detached(priority: .userInitiated) {
             do {

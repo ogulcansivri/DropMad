@@ -48,7 +48,7 @@ public struct ShelfItemCardView: View {
             // Actions on Hover
             if isHovering {
                 Button(action: {
-                    DropShelfViewModel.shared.removeItem(withID: item.id)
+                    DropMadViewModel.shared.removeItem(withID: item.id)
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))
@@ -80,18 +80,18 @@ public struct ShelfItemCardView: View {
             return provider
         }
         .onTapGesture(count: 2) {
-            DropShelfViewModel.shared.openItem(item: item)
+            DropMadViewModel.shared.openItem(item: item)
         }
         .contextMenu {
             Button(L10n.open) {
-                DropShelfViewModel.shared.openItem(item: item)
+                DropMadViewModel.shared.openItem(item: item)
             }
             Button(L10n.revealInFinder) {
-                DropShelfViewModel.shared.revealInFinder(item: item)
+                DropMadViewModel.shared.revealInFinder(item: item)
             }
             Divider()
             Button(L10n.remove) {
-                DropShelfViewModel.shared.removeItem(withID: item.id)
+                DropMadViewModel.shared.removeItem(withID: item.id)
             }
         }
     }

@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "🔨 Building DropShelf in Release mode..."
+echo "🔨 Building DropMad in Release mode..."
 swift build -c release
 
-APP_NAME="DropShelf"
+APP_NAME="DropMad"
 BUILD_DIR="./build"
 APP_BUNDLE="$BUILD_DIR/$APP_NAME.app"
 CONTENTS_DIR="$APP_BUNDLE/Contents"
@@ -20,5 +20,5 @@ echo "🚚 Copying binary and Info.plist..."
 cp ".build/release/$APP_NAME" "$MACOS_DIR/$APP_NAME"
 cp "Info.plist" "$CONTENTS_DIR/Info.plist"
 
-echo "✨ DropShelf.app successfully built at: $APP_BUNDLE"
+echo "✨ DropMad.app successfully built at: $APP_BUNDLE"
 echo "👉 You can now run: open \"$APP_BUNDLE\" or move it to /Applications"

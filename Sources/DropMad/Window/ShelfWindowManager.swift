@@ -105,7 +105,7 @@ public final class ShelfWindowManager: NSObject, ObservableObject {
     public func showGuide() {
         show(nearMouse: false)
         // Post notification or sheet trigger
-        NotificationCenter.default.post(name: Notification.Name("ShowDropShelfGuide"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("ShowDropMadGuide"), object: nil)
     }
     
     public func hide() {

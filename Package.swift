@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "DropShelf",
+    name: "DropMad",
     platforms: [
         .macOS(.v13)
     ],
     products: [
         .executable(
-            name: "DropShelf",
-            targets: ["DropShelf"]
+            name: "DropMad",
+            targets: ["DropMad"]
         )
     ],
     targets: [
         .executableTarget(
-            name: "DropShelf",
-            path: "Sources/DropShelf"
+            name: "DropMad",
+            path: "Sources/DropMad"
         )
     ]
 )
