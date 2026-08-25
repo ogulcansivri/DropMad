@@ -51,8 +51,19 @@ public final class ShelfWindowManager: NSObject, ObservableObject {
         positionAtDefaultLocation()
     }
     
+    private func targetScreen(for mouseLocation: NSPoint? = nil) -> NSScreen {
+        if let loc = mouseLocation {
+            if let screen = NSScreen.screens.first(where: { NSMouseInRect(loc, $0.frame, false) }) {
+                return screen
+            }
+        }
+        return NSScreen.main ?? NSScreen.screens.first ?? NSScreen()
+    }
+    
     public func positionAtDefaultLocation() {
-        guard let panel = panel, let screen = NSScreen.main else { return }
+        let mouseLocation = NSEvent.mouseLocation
+        let screen = targetScreen(for: mouseLocation)
+        guard let panel = panel else { return }
         let visibleFrame = screen.visibleFrame
         let x = visibleFrame.maxX - panel.frame.width - 24
         let y = visibleFrame.midY - (panel.frame.height / 2)
@@ -60,8 +71,9 @@ public final class ShelfWindowManager: NSObject, ObservableObject {
     }
     
     public func positionNearMouse() {
-        guard let panel = panel, let screen = NSScreen.main else { return }
         let mouseLocation = NSEvent.mouseLocation
+        let screen = targetScreen(for: mouseLocation)
+        guard let panel = panel else { return }
         let screenFrame = screen.visibleFrame
         
         var x = mouseLocation.x + 20

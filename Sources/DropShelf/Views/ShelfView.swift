@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct ShelfView: View {
-    @ObservedObject var viewModel = DropShelfViewModel.shared
+    @StateObject private var viewModel = DropShelfViewModel.shared
     @State private var isTargeted: Bool = false
     
     public init() {}

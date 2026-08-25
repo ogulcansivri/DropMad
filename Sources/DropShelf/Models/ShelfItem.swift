@@ -32,14 +32,18 @@ public struct ShelfItem: Identifiable, Hashable {
         self.thumbnail = NSWorkspace.shared.icon(forFile: url.path)
     }
     
+    private static let byteFormatter: ByteCountFormatter = {
+        let formatter = ByteCountFormatter()
+        formatter.allowedUnits = [.useAll]
+        formatter.countStyle = .file
+        return formatter
+    }()
+    
     public var formattedSize: String {
         if isDirectory {
             return "Folder"
         }
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useAll]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: fileSize)
+        return Self.byteFormatter.string(fromByteCount: fileSize)
     }
     
     public func hash(into hasher: inout Hasher) {
