@@ -14,8 +14,8 @@
 ---
 
 ## 🌐 Language / Dil Seçimi
-- [English Documentation](#-english)
-- [Türkçe Dokümantasyon](#-türkçe)
+- [English Documentation](#-english) &bull; [📖 Full User Guide](GUIDE.md#-english-user-guide)
+- [Türkçe Dokümantasyon](#-türkçe) &bull; [📖 Kapsamlı Kullanım Kılavuzu](GUIDE.md#-türkçe-kullanım-kılavuzu)
 
 ---
 
